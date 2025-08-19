@@ -5,12 +5,14 @@
  * @format
  */
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
 import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+  StatusBar,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -24,21 +26,36 @@ function App() {
 }
 
 function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
   return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
+        <View style={styles.row}>
+          <Text style={styles.textA}>Available to book</Text>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.textB}>Available to book</Text>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    padding: 16,
+  },
+  row: {
+    flexDirection: 'row',
+    gap: 16,
+    borderWidth: 1,
+    borderColor: '#DDD',
+  },
+  textA: {
+    lineHeight: 36,
+    backgroundColor: '#F08080',
+  },
+  textB: {
+    backgroundColor: '#F08080',
   },
 });
 
